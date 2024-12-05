@@ -30,7 +30,7 @@ CxxTest::StaticSuiteDescription suiteDescription_HebbianUpdatingAgentUTest( "/ho
 
 static class TestDescription_suite_HebbianUpdatingAgentUTest_testHebbianLinkUpdating : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_HebbianUpdatingAgentUTest_testHebbianLinkUpdating() : CxxTest::RealTestDescription( Tests_HebbianUpdatingAgentUTest, suiteDescription_HebbianUpdatingAgentUTest, 78, "testHebbianLinkUpdating" ) {}
+ TestDescription_suite_HebbianUpdatingAgentUTest_testHebbianLinkUpdating() : CxxTest::RealTestDescription( Tests_HebbianUpdatingAgentUTest, suiteDescription_HebbianUpdatingAgentUTest, 84, "testHebbianLinkUpdating" ) {}
  void runTest() { suite_HebbianUpdatingAgentUTest.testHebbianLinkUpdating(); }
 } testDescription_suite_HebbianUpdatingAgentUTest_testHebbianLinkUpdating;
 

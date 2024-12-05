@@ -821,3 +821,21 @@
 [2024-12-05 03:32:30:868] [INFO] Loading module "../../opencog/attention/libattention.so"
 [2024-12-05 03:32:30:869] [INFO] Loading module "/home/silence/Documents/again/attention/cogserver/build/opencog/cogserver/modules/agents/libagents.so"
 [2024-12-05 03:32:30:934] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:44:37:091] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:44:37:091] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:44:37:177] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:44:44:230] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:44:44:231] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:44:44:299] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:45:09:906] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:45:09:906] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:45:09:983] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:45:17:034] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:45:17:035] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:45:17:098] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:45:40:641] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:45:40:641] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:45:40:714] [INFO] Module "libagents.so" is already loaded.
+[2024-12-05 06:45:47:764] [INFO] Loading module "../../opencog/attention/libattention.so"
+[2024-12-05 06:45:47:765] [INFO] Loading module "/usr/local/lib//opencog/modules/libagents.so"
+[2024-12-05 06:45:47:828] [INFO] Module "libagents.so" is already loaded.

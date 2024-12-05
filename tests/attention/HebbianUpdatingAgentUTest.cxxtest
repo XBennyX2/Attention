@@ -39,7 +39,7 @@
 
 using namespace opencog;
 using namespace std;
-
+// desiging a test suite class that inherits from CxxTest:: Testsuite making it compatible with cxxtest
 class HebbianUpdatingAgentUTest : public CxxTest::TestSuite
 {
 private:
@@ -49,6 +49,7 @@ private:
     Scheduler* _scheduler;
 
 public:
+// cleans up after each test by stopping the cogserver
     void tearDown()
     {
         _cogserver->stop();
@@ -56,39 +57,47 @@ public:
 
     void InitCogServer()
     {
-        _cogserver = &cogserver();
+        _cogserver = &cogserver(); // initializes the cog server and assign
+        //Configures and Loads required modules (libattentions and Lib agent)
+
         config().set("MODULES", "opencog/attention/libattention.so");
         _cogserver->loadModules();
         config().set("MODULES", "libagents.so");
+        //Retrieves the AgentsModule and initializes the Scheduler
+
         Module* amod = _cogserver->getModule("opencog::AgentsModule");
         AgentsModule* agmod = (AgentsModule*) amod;
         _scheduler = &agmod->get_scheduler();
-
         AttentionParamQuery _atq(&cogserver().getAtomSpace());
         _atq.load_default_values(); // Load default ECAN param values into AS
+
+        //Register the HebbianUpdatingAgent with the Scheduler and Creates an instance
 
         Factory<HebbianUpdatingAgent, Agent> hebbianUpdatingFactory;
         _scheduler->registerAgent(HebbianUpdatingAgent::info().id, &hebbianUpdatingFactory);
         _hebbianupdating_agentptr =
             _scheduler->createAgent(HebbianUpdatingAgent::info().id, false);
 
-        this->as = &cogserver().getAtomSpace();
+        this->as = &cogserver().getAtomSpace(); // assign the global atomspace to local pointer as
     }
 
     void testHebbianLinkUpdating(void)
     {
         InitCogServer();
         _scheduler->startAgent(_hebbianupdating_agentptr, true, "hca");
+        // Initializes the CogServer, starts the HebbianUpdatingAgent and assigns it a custom name hca
 
         AttentionBank& ab = attentionbank(&cogserver().getAtomSpace());
         count_t conf90 = 900; //SimpleTruthValue::confidenceToCount(0.90);
+        // retrives the AttentionBanl and sets a confidence value for truth values.
 
         // Populate the AtomSpace with example nodes and Hebbian links
         Handle a = as->add_node(CONCEPT_NODE, "A");
         Handle b = as->add_node(CONCEPT_NODE, "B");
         Handle c = as->add_node(CONCEPT_NODE, "C");
         Handle abLink = as->add_link(ASYMMETRIC_HEBBIAN_LINK, a, b);
-        abLink->setTruthValue(SimpleTruthValue::createTV(0.5, conf90));
+        // Add concept nodes abc and a hebbian link between a and b with a specified truth value
+        abLink->setTruthValue(SimpleTruthValue::createTV(0.4, conf90));
 
         // Stimulate nodes to add them to attentional focus
         ab.stimulate(a, 200);
@@ -99,6 +108,7 @@ public:
         sleep(1);
 
         // Validate that Hebbian links exist between the expected nodes
+        // assets that three nodes are in attentional focus
         HandleSeq attentionalFocus;
         ab.get_handle_set_in_attentional_focus(back_inserter(attentionalFocus));
         TS_ASSERT_EQUALS(attentionalFocus.size(), 3);
