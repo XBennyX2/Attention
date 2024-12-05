@@ -1,0 +1,116 @@
+Start testing: Dec 05 06:32 EAT
+----------------------------------------------------------
+1/7 Testing: AttentionValueUTest
+1/7 Test: AttentionValueUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attentionbank/AttentionValueUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attentionbank
+"AttentionValueUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (8 tests)........OK!
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"AttentionValueUTest" end time: Dec 05 06:32 EAT
+"AttentionValueUTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/7 Testing: AttentionUTest
+2/7 Test: AttentionUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attentionbank/AttentionUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attentionbank
+"AttentionUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (3 tests)...OK!
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"AttentionUTest" end time: Dec 05 06:32 EAT
+"AttentionUTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/7 Testing: BankImplUTest
+3/7 Test: BankImplUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attentionbank/BankImplUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attentionbank
+"BankImplUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (10 tests)..........OK!
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"BankImplUTest" end time: Dec 05 06:32 EAT
+"BankImplUTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/7 Testing: BankAsyncUTest
+4/7 Test: BankAsyncUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attentionbank/BankAsyncUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attentionbank
+"BankAsyncUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (1 test).OK!
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"BankAsyncUTest" end time: Dec 05 06:32 EAT
+"BankAsyncUTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/7 Testing: AttentionalFocusCBUTest
+5/7 Test: AttentionalFocusCBUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attentionbank/AttentionalFocusCBUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attentionbank
+"AttentionalFocusCBUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (1 test)[2024-12-05 03:32:19:686] [DEBUG] BEGIN TEST: test_af_bindlink
+.OK!
+<end of output>
+Test time =   0.10 sec
+----------------------------------------------------------
+Test Passed.
+"AttentionalFocusCBUTest" end time: Dec 05 06:32 EAT
+"AttentionalFocusCBUTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/7 Testing: AFRentCollectionAgentUTest
+6/7 Test: AFRentCollectionAgentUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attention/AFRentCollectionAgentUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attention
+"AFRentCollectionAgentUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (1 test).OK!
+<end of output>
+Test time =  11.15 sec
+----------------------------------------------------------
+Test Passed.
+"AFRentCollectionAgentUTest" end time: Dec 05 06:32 EAT
+"AFRentCollectionAgentUTest" time elapsed: 00:00:11
+----------------------------------------------------------
+
+7/7 Testing: HebbianUpdatingAgentUTest
+7/7 Test: HebbianUpdatingAgentUTest
+Command: "/home/silence/Documents/again/attention/build/tests/attention/HebbianUpdatingAgentUTest"
+Directory: /home/silence/Documents/again/attention/build/tests/attention
+"HebbianUpdatingAgentUTest" start time: Dec 05 06:32 EAT
+Output:
+----------------------------------------------------------
+Running cxxtest tests (1 test).OK!
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"HebbianUpdatingAgentUTest" end time: Dec 05 06:32 EAT
+"HebbianUpdatingAgentUTest" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Dec 05 06:32 EAT

@@ -1,0 +1,115 @@
+/*
+ * tests/dynamics/AFRentCollectionAgentUTest.cxxtest
+ *
+ * Copyright (C) 2024 Your Name
+ * All Rights Reserved
+ *
+ * Written by Your Name
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License v3 as
+ * published by the Free Software Foundation and including the exceptions
+ * at http://opencog.org/wiki/Licenses
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, write to:
+ * Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+#include <cxxtest/TestSuite.h>
+
+#include <opencog/attention/AttentionModule.h>
+#include <opencog/attention/AttentionParamQuery.h>
+#include <opencog/attention/HebbianCreationAgent.h>
+
+#include <opencog/attention/Neighbors.h>
+#include <opencog/cogserver/server/CogServer.h>
+#include <opencog/cogserver/modules/agents/AgentsModule.h>
+#include <opencog/cogserver/modules/agents/Scheduler.h>
+#include <opencog/attentionbank/bank/AttentionBank.h>
+#include <opencog/attentionbank/types/atom_types.h>
+#include <opencog/attentionbank/avalue/AttentionValue.h>
+#include <opencog/atoms/truthvalue/SimpleTruthValue.h>
+#include <opencog/atomspace/AtomSpace.h>
+#include <opencog/util/Logger.h>
+#include <opencog/util/Config.h>
+#include <opencog/util/algorithm.h>
+#include <opencog/cogserver/server/Factory.h>
+
+
+using namespace opencog;
+using namespace std;
+
+class AFRentCollectionAgentUTest : public CxxTest::TestSuite
+{
+private:
+    AtomSpace* as;
+    CogServer* cogServer;
+    Scheduler* scheduler;
+    AgentPtr afRentAgentPtr;
+
+public:
+    void tearDown()
+    {
+        cogServer->stop();
+    }
+
+    void InitCogServer()
+    {
+        cogServer = &cogserver();
+        config().set("MODULES", "opencog/attention/libattention.so");
+        cogServer->loadModules();
+        config().set("MODULES", "libagents.so");
+        Module* amod = cogServer->getModule("opencog::AgentsModule");
+        AgentsModule* agmod = (AgentsModule*)amod;
+        scheduler = &agmod->get_scheduler();
+
+        AttentionParamQuery atq(&cogserver().getAtomSpace());
+        atq.load_default_values();
+
+
+        Factory<AFRentCollectionAgent, Agent> afRentFactory;
+        scheduler->registerAgent(AFRentCollectionAgent::info().id, &afRentFactory);
+        afRentAgentPtr = scheduler->createAgent(AFRentCollectionAgent::info().id, false);
+
+        this->as = &cogserver().getAtomSpace();
+    }
+
+void testRentCollection(void)
+{
+    InitCogServer();
+    scheduler->startAgent(afRentAgentPtr, true, "af_rent");
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Ensure agent starts
+
+
+    AttentionBank& bank = attentionbank(as);
+
+    Handle node1 = as->add_node(CONCEPT_NODE, "Node1");
+    Handle node2 = as->add_node(CONCEPT_NODE, "Node2");
+    Handle node3 = as->add_node(CONCEPT_NODE, "Node3");
+
+    bank.stimulate(node1, 10); // Reduced stimulation
+    bank.stimulate(node2, 10);
+    bank.stimulate(node3, 10);
+
+    HandleSeq attentionalFocus;
+    bank.get_handle_set_in_attentional_focus(back_inserter(attentionalFocus));
+    TS_ASSERT_EQUALS(attentionalFocus.size(), 3);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(6000)); // Allow agent to act
+
+    for (Handle node : attentionalFocus) {
+        AttentionValue::sti_t sti = get_sti(node);
+        AttentionValue::lti_t lti = get_lti(node);
+        TS_ASSERT_LESS_THAN(sti, 20); // Ensure STI decreased
+        TS_ASSERT_LESS_THAN(lti, 20); // Ensure LTI decreased
+    }
+
+    scheduler->stopAgent(afRentAgentPtr);
+}
+};
